@@ -24,8 +24,7 @@ The contract that lets a workspace controller — the [DisplayXR Shell](https://
 
 | Header | Extension | Description |
 |--------|-----------|-------------|
-| [`XR_EXT_spatial_workspace.h`](include/openxr/XR_EXT_spatial_workspace.h) | `XR_EXT_spatial_workspace` | Multi-app composition: window pose, hit-test, capture |
-| [`XR_EXT_app_launcher.h`](include/openxr/XR_EXT_app_launcher.h) | `XR_EXT_app_launcher` | Launcher tile registration and lifecycle |
+| [`XR_EXT_spatial_workspace.h`](include/openxr/XR_EXT_spatial_workspace.h) | `XR_EXT_spatial_workspace` | Multi-app composition: window pose, hit-test, capture, overlay, modal input grab |
 
 ## Usage
 
