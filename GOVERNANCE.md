@@ -27,6 +27,33 @@ Neutrality in practice:
 - All design work happens in public: extension specs, Architecture Decision
   Records, issues, and pull requests are open for review by anyone.
 
+## Stewardship and conflict-of-interest disclosure
+
+DisplayXR is currently stewarded by its founder and lead maintainer,
+**David Fattal**. We state the resulting conflict directly rather than
+leave it to be inferred: David Fattal is also an employee of **Leia Inc.**,
+the display-technology vendor whose plug-in is the first integration of the
+DisplayXR plug-in boundary.
+
+Two commitments keep that overlap from translating into control of the neutral
+core:
+
+- **Leia holds no privileged position in the project.** No privileged code
+  path — the runtime ships zero vendor identifiers, asserted in CI at the link
+  level ([ADR-019](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/adr/ADR-019-vendor-plugin-aux-boundary.md));
+  no privileged review authority; and **no reserved governance seat**. Leia
+  integrates on exactly the same documented plug-in boundary as any other
+  vendor, and `sim_display` proves the runtime runs with no vendor code at all.
+- **Project identity is on a path to an independent steward.** As adoption
+  grows, the project intends to move its identity — domain, GitHub
+  organization, name, code-signing keys, and reference builds — to a small,
+  independent light steward established outside any single vendor, and to
+  institutionalize governance (a Technical Steering Committee, per the
+  milestones below) once a second independent vendor adopts the plug-in
+  boundary. Leia's standing role is founding-contributor recognition and a
+  steering-committee seat on equal footing with other participants — not
+  control over the standard or the reference implementation.
+
 ## How decisions are made (incubation phase)
 
 - **Maintainers** review and merge changes. Final say on extension specs and

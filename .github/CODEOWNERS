@@ -1,1 +1,8 @@
-* @dfattal
+# Code owners for displayxr-extensions.
+#
+# Owned by the project maintainers team, not an individual. NOTE: this file is
+# hand-maintained — the publish workflow does not regenerate it.
+#
+# @DisplayXR/maintainers must exist as a GitHub team with write access to this
+# repo for CODEOWNERS-based review requests to route correctly.
+* @DisplayXR/maintainers
