@@ -8,15 +8,15 @@ The headers fall into three groups: what the runtime tells apps about the displa
 
 | Header | Extension | Description |
 |--------|-----------|-------------|
-| [`XR_EXT_display_info.h`](include/openxr/XR_EXT_display_info.h) | `XR_EXT_display_info` | Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection |
+| [`XR_DXR_display_info.h`](include/openxr/XR_DXR_display_info.h) | `XR_DXR_display_info` | Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection |
 
 ## App window binding
 
 | Header | Extension | Description |
 |--------|-----------|-------------|
-| [`XR_EXT_win32_window_binding.h`](include/openxr/XR_EXT_win32_window_binding.h) | `XR_EXT_win32_window_binding` | App-provided HWND, shared texture, canvas sub-rect |
-| [`XR_EXT_cocoa_window_binding.h`](include/openxr/XR_EXT_cocoa_window_binding.h) | `XR_EXT_cocoa_window_binding` | App-provided NSView, IOSurface sharing |
-| [`XR_EXT_macos_gl_binding.h`](include/openxr/XR_EXT_macos_gl_binding.h) | `XR_EXT_macos_gl_binding` | macOS OpenGL graphics binding |
+| [`XR_DXR_win32_window_binding.h`](include/openxr/XR_DXR_win32_window_binding.h) | `XR_DXR_win32_window_binding` | App-provided HWND, shared texture, canvas sub-rect |
+| [`XR_DXR_cocoa_window_binding.h`](include/openxr/XR_DXR_cocoa_window_binding.h) | `XR_DXR_cocoa_window_binding` | App-provided NSView, IOSurface sharing |
+| [`XR_DXR_macos_gl_binding.h`](include/openxr/XR_DXR_macos_gl_binding.h) | `XR_DXR_macos_gl_binding` | macOS OpenGL graphics binding |
 
 ## Workspace controller surface
 
@@ -24,7 +24,7 @@ The contract that lets a workspace controller — the [DisplayXR Shell](https://
 
 | Header | Extension | Description |
 |--------|-----------|-------------|
-| [`XR_EXT_spatial_workspace.h`](include/openxr/XR_EXT_spatial_workspace.h) | `XR_EXT_spatial_workspace` | Multi-app composition: window pose, hit-test, capture, overlay, modal input grab |
+| [`XR_DXR_spatial_workspace.h`](include/openxr/XR_DXR_spatial_workspace.h) | `XR_DXR_spatial_workspace` | Multi-app composition: window pose, hit-test, capture, overlay, modal input grab |
 
 ## Usage
 
@@ -43,7 +43,7 @@ git submodule add https://github.com/DisplayXR/displayxr-extensions.git external
 
 ## Provisional naming
 
-The `XR_EXT_*` identifiers are **provisional** — they are not registered in the Khronos OpenXR registry. They are placeholders used during DisplayXR incubation and will be re-registered (and may be renamed to a registered `XR_<AUTHORID>_` prefix) through the official Khronos process on the EXT → KHR path. Do not treat the names or numeric values as stable. See [GOVERNANCE.md](GOVERNANCE.md).
+`DXR` is DisplayXR's Khronos-registered OpenXR author ID. The `XR_DXR_*` extensions themselves are **provisional** — they are not yet registered in the Khronos OpenXR registry: extension numbers and `XrStructureType` values sit in a provisional experimental block (`1004999xxx`) pending official assignment. Extension names are expected to be stable; numeric values are not. (These extensions previously shipped under provisional `XR_EXT_*` names; `SPEC_VERSION` restarted at 1 on the rename.) See [GOVERNANCE.md](GOVERNANCE.md).
 
 ## License
 
@@ -51,4 +51,4 @@ The `XR_EXT_*` identifiers are **provisional** — they are not registered in th
 
 ## Auto-Published
 
-These headers are automatically synced from `displayxr-runtime/src/external/openxr_includes/openxr/XR_EXT_*.h` on every push to main. Do not edit directly — changes will be overwritten.
+These headers are automatically synced from `displayxr-runtime/src/external/openxr_includes/openxr/XR_DXR_*.h` on every push to main. Do not edit directly — changes will be overwritten.
