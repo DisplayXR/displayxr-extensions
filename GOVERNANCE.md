@@ -88,9 +88,9 @@ accepted without a working implementation.
 ### A note on extension naming
 
 DisplayXR extensions use the `XR_DXR_*` prefix — `DXR` is the project's
-Khronos-registered OpenXR author ID
-([KhronosGroup/OpenXR-Docs#199](https://github.com/KhronosGroup/OpenXR-Docs/pull/199),
-merged July 2026). The extensions themselves remain **provisional** — they
+OpenXR author ID, in final review with Khronos
+([KhronosGroup/OpenXR-Docs#201](https://github.com/KhronosGroup/OpenXR-Docs/pull/201)).
+The extensions themselves remain **provisional** — they
 are not yet registered in the Khronos OpenXR registry, and extensions that
 are upstreamed will be re-registered (and possibly renamed, e.g. under the
 multi-vendor `XR_EXT_*` tag) through the official Khronos process at that
