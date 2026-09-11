@@ -1,0 +1,146 @@
+[
+  {
+    "name": "XR_DXR_android_surface_binding",
+    "title": "Android Surface Binding",
+    "summary": "App-provided Android Surface / ANativeWindow, republished across background and resume, with the per-frame window rect",
+    "group": "windowing",
+    "specVersion": 2,
+    "header": "include/openxr/XR_DXR_android_surface_binding.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_android_surface_binding.md"
+  },
+  {
+    "name": "XR_DXR_atlas_capture",
+    "title": "Atlas Capture",
+    "summary": "Vendor-neutral PNG snapshot of the multi-view atlas at a caller-selected compositor stage, for any app class",
+    "group": "capture",
+    "specVersion": 3,
+    "header": "include/openxr/XR_DXR_atlas_capture.h",
+    "specUrl": null
+  },
+  {
+    "name": "XR_DXR_cocoa_window_binding",
+    "title": "Cocoa Window Binding",
+    "summary": "App-provided NSView, IOSurface sharing",
+    "group": "windowing",
+    "specVersion": 6,
+    "header": "include/openxr/XR_DXR_cocoa_window_binding.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_cocoa_window_binding.md"
+  },
+  {
+    "name": "XR_DXR_depth_budget",
+    "title": "Rear Depth Budget",
+    "summary": "Advisory limit on how far behind the display plane a transparent app may render, chained on XrViewState at xrLocateViews",
+    "group": "rendering",
+    "specVersion": 3,
+    "header": "include/openxr/XR_DXR_depth_budget.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_depth_budget.md"
+  },
+  {
+    "name": "XR_DXR_display_info",
+    "title": "Display Info",
+    "summary": "Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection",
+    "group": "display",
+    "specVersion": 18,
+    "header": "include/openxr/XR_DXR_display_info.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md"
+  },
+  {
+    "name": "XR_DXR_display_zones",
+    "title": "Display Zones",
+    "summary": "A layout of independent 3D zones and flat 2D zones across one display, each 3D zone with its own view rig, plus the wish mask a switchable-lens panel honours",
+    "group": "rendering",
+    "specVersion": 3,
+    "header": "include/openxr/XR_DXR_display_zones.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_zones.md"
+  },
+  {
+    "name": "XR_DXR_local_3d_zone",
+    "title": "Local 3D Zones",
+    "summary": "Per-pixel 3D-ness mask over an app's own window, with the flat 2D side as a first-class post-weave composition layer",
+    "group": "rendering",
+    "specVersion": 4,
+    "header": "include/openxr/XR_DXR_local_3d_zone.h",
+    "specUrl": null
+  },
+  {
+    "name": "XR_DXR_macos_gl_binding",
+    "title": "macOS OpenGL Binding",
+    "summary": "macOS OpenGL graphics binding",
+    "group": "windowing",
+    "specVersion": 2,
+    "header": "include/openxr/XR_DXR_macos_gl_binding.h",
+    "specUrl": null
+  },
+  {
+    "name": "XR_DXR_mcp_tools",
+    "title": "App MCP Tools",
+    "summary": "An app registers its own MCP tools with the runtime's agent surface; calls arrive on the OpenXR event queue",
+    "group": "agent",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_mcp_tools.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_mcp_tools.md"
+  },
+  {
+    "name": "XR_DXR_spatial_workspace",
+    "title": "Spatial Workspace",
+    "summary": "Multi-app composition: window pose, hit-test, capture, overlay, modal input grab",
+    "group": "workspace",
+    "specVersion": 24,
+    "header": "include/openxr/XR_DXR_spatial_workspace.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_spatial_workspace.md"
+  },
+  {
+    "name": "XR_DXR_view_rig",
+    "title": "View Rig",
+    "summary": "App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math",
+    "group": "rendering",
+    "specVersion": 3,
+    "header": "include/openxr/XR_DXR_view_rig.h",
+    "specUrl": null
+  },
+  {
+    "name": "XR_DXR_wayland_surface_binding",
+    "title": "Wayland Surface Binding",
+    "summary": "App-provided wl_display and wl_surface (desktop Linux)",
+    "group": "windowing",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_wayland_surface_binding.h",
+    "specUrl": null
+  },
+  {
+    "name": "XR_DXR_weave",
+    "title": "Window Weave Service",
+    "summary": "Window-bound synchronous weave for present-owners: hand the runtime a stereo texture and a window rect, get back a weaved shared texture and a fence",
+    "group": "rendering",
+    "specVersion": 9,
+    "header": "include/openxr/XR_DXR_weave.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_weave.md"
+  },
+  {
+    "name": "XR_DXR_win32_window_binding",
+    "title": "Win32 Window Binding",
+    "summary": "App-provided HWND, shared texture, canvas sub-rect",
+    "group": "windowing",
+    "specVersion": 8,
+    "header": "include/openxr/XR_DXR_win32_window_binding.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_win32_window_binding.md"
+  },
+  {
+    "name": "XR_DXR_workspace_file_dialog",
+    "title": "Workspace File Dialog",
+    "summary": "Async spatial-native file picker spawned by the active workspace controller, with fallback to the platform dialog",
+    "group": "workspace",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_workspace_file_dialog.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_workspace_file_dialog.md"
+  },
+  {
+    "name": "XR_DXR_xlib_window_binding",
+    "title": "Xlib Window Binding",
+    "summary": "App-provided X11 Display* and Window (desktop Linux)",
+    "group": "windowing",
+    "specVersion": 2,
+    "header": "include/openxr/XR_DXR_xlib_window_binding.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_xlib_window_binding.md"
+  }
+]
