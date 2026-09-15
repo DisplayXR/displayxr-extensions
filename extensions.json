@@ -31,7 +31,7 @@
     "title": "Rear Depth Budget",
     "summary": "Advisory limit on how far behind the display plane a transparent app may render, chained on XrViewState at xrLocateViews",
     "group": "rendering",
-    "specVersion": 3,
+    "specVersion": 4,
     "header": "include/openxr/XR_DXR_depth_budget.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_depth_budget.md"
   },

@@ -20,7 +20,7 @@ How an app drives the runtime's view math, declares which regions of its window 
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
-| `XR_DXR_depth_budget` | [`XR_DXR_depth_budget.h`](include/openxr/XR_DXR_depth_budget.h) | 3 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_depth_budget.md) | Advisory limit on how far behind the display plane a transparent app may render, chained on XrViewState at xrLocateViews |
+| `XR_DXR_depth_budget` | [`XR_DXR_depth_budget.h`](include/openxr/XR_DXR_depth_budget.h) | 4 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_depth_budget.md) | Advisory limit on how far behind the display plane a transparent app may render, chained on XrViewState at xrLocateViews |
 | `XR_DXR_display_zones` | [`XR_DXR_display_zones.h`](include/openxr/XR_DXR_display_zones.h) | 3 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_zones.md) | A layout of independent 3D zones and flat 2D zones across one display, each 3D zone with its own view rig, plus the wish mask a switchable-lens panel honours |
 | `XR_DXR_local_3d_zone` | [`XR_DXR_local_3d_zone.h`](include/openxr/XR_DXR_local_3d_zone.h) | 4 | — | Per-pixel 3D-ness mask over an app's own window, with the flat 2D side as a first-class post-weave composition layer |
 | `XR_DXR_view_rig` | [`XR_DXR_view_rig.h`](include/openxr/XR_DXR_view_rig.h) | 3 | — | App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math |
