@@ -40,7 +40,7 @@
     "title": "Display Info",
     "summary": "Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection",
     "group": "display",
-    "specVersion": 18,
+    "specVersion": 19,
     "header": "include/openxr/XR_DXR_display_info.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md"
   },
