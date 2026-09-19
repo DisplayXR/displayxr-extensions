@@ -12,7 +12,7 @@ What the runtime tells apps about the 3D display they are rendering on.
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
-| `XR_DXR_display_info` | [`XR_DXR_display_info.h`](include/openxr/XR_DXR_display_info.h) | 20 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md) | Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection |
+| `XR_DXR_display_info` | [`XR_DXR_display_info.h`](include/openxr/XR_DXR_display_info.h) | 21 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md) | Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection |
 
 ## Rendering, projection & compositing
 
