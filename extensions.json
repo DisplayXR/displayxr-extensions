@@ -105,7 +105,7 @@
     "group": "windowing",
     "specVersion": 1,
     "header": "include/openxr/XR_DXR_wayland_surface_binding.h",
-    "specUrl": null
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_wayland_surface_binding.md"
   },
   {
     "name": "XR_DXR_weave",
