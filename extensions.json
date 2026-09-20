@@ -101,9 +101,9 @@
   {
     "name": "XR_DXR_wayland_surface_binding",
     "title": "Wayland Surface Binding",
-    "summary": "App-provided wl_display and wl_surface (desktop Linux)",
+    "summary": "App-provided wl_display and wl_surface (desktop Linux), plus the app-declared surface size that makes windowed Wayland work",
     "group": "windowing",
-    "specVersion": 1,
+    "specVersion": 2,
     "header": "include/openxr/XR_DXR_wayland_surface_binding.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_wayland_surface_binding.md"
   },
