@@ -54,6 +54,15 @@
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_zones.md"
   },
   {
+    "name": "XR_DXR_lift",
+    "title": "2D-to-3D Conversion",
+    "summary": "Asynchronous access to a vendor's 2D-to-3D conversion module (depth, stereo, N-view, or photo-to-Gaussian-splats): submit 2D frames, acquire the latest converted result, or flag a weave rect as 2D so the service lifts it before weaving",
+    "group": "rendering",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_lift.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_lift.md"
+  },
+  {
     "name": "XR_DXR_local_3d_zone",
     "title": "Local 3D Zones",
     "summary": "Per-pixel 3D-ness mask over an app's own window, with the flat 2D side as a first-class post-weave composition layer; its view-size event is soft-deprecated since spec 5 in favour of the Khronos XR_EXT_view_configuration_views_change, but still emitted unchanged",
