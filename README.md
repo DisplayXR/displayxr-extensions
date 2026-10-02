@@ -25,7 +25,7 @@ How an app drives the runtime's view math, declares which regions of its window 
 | `XR_DXR_lift` | [`XR_DXR_lift.h`](include/openxr/XR_DXR_lift.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_lift.md) | Asynchronous access to a vendor's 2D-to-3D conversion module (depth, stereo, N-view, or photo-to-Gaussian-splats): submit 2D frames, acquire the latest converted result, or flag a weave rect as 2D so the service lifts it before weaving |
 | `XR_DXR_local_3d_zone` | [`XR_DXR_local_3d_zone.h`](include/openxr/XR_DXR_local_3d_zone.h) | 5 | — | Per-pixel 3D-ness mask over an app's own window, with the flat 2D side as a first-class post-weave composition layer; its view-size event is soft-deprecated since spec 5 in favour of the Khronos XR_EXT_view_configuration_views_change, but still emitted unchanged |
 | `XR_DXR_view_rig` | [`XR_DXR_view_rig.h`](include/openxr/XR_DXR_view_rig.h) | 3 | — | App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math |
-| `XR_DXR_weave` | [`XR_DXR_weave.h`](include/openxr/XR_DXR_weave.h) | 12 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_weave.md) | Window-bound synchronous weave for present-owners: hand the runtime a stereo texture and a window rect, get back a weaved shared texture and a fence |
+| `XR_DXR_weave` | [`XR_DXR_weave.h`](include/openxr/XR_DXR_weave.h) | 13 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_weave.md) | Window-bound synchronous weave for present-owners: hand the runtime a stereo texture and a window rect, get back a weaved shared texture and a fence |
 
 ## App window binding
 
