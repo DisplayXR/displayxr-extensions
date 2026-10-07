@@ -27,6 +27,15 @@
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_cocoa_window_binding.md"
   },
   {
+    "name": "XR_DXR_cursor_depth",
+    "title": "Depth-Aware Cursor",
+    "summary": "Opt-in: the app reports the nearest content under the cursor at xrLocateViews and gets back a pose and size for a cursor sprite just in front of it, so the pointer never sits behind 3D content",
+    "group": "rendering",
+    "specVersion": 2,
+    "header": "include/openxr/XR_DXR_cursor_depth.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_cursor_depth.md"
+  },
+  {
     "name": "XR_DXR_depth_budget",
     "title": "Rear Depth Budget",
     "summary": "Advisory limit on how far behind the display plane a transparent app may render, chained on XrViewState at xrLocateViews",

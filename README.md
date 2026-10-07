@@ -2,7 +2,7 @@
 
 OpenXR extension headers for 3D-display runtimes. **Auto-published** from [`displayxr-runtime`](https://github.com/DisplayXR/displayxr-runtime).
 
-18 extensions, in 6 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
+19 extensions, in 6 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
 
 `Spec` links the formal specification where one is written; a dash means the header is the specification for now.
 
@@ -20,6 +20,7 @@ How an app drives the runtime's view math, declares which regions of its window 
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
+| `XR_DXR_cursor_depth` | [`XR_DXR_cursor_depth.h`](include/openxr/XR_DXR_cursor_depth.h) | 2 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_cursor_depth.md) | Opt-in: the app reports the nearest content under the cursor at xrLocateViews and gets back a pose and size for a cursor sprite just in front of it, so the pointer never sits behind 3D content |
 | `XR_DXR_depth_budget` | [`XR_DXR_depth_budget.h`](include/openxr/XR_DXR_depth_budget.h) | 4 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_depth_budget.md) | Advisory limit on how far behind the display plane a transparent app may render, chained on XrViewState at xrLocateViews |
 | `XR_DXR_display_zones` | [`XR_DXR_display_zones.h`](include/openxr/XR_DXR_display_zones.h) | 3 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_zones.md) | A layout of independent 3D zones and flat 2D zones across one display, each 3D zone with its own view rig, plus the wish mask a switchable-lens panel honours; poll xrGetDisplayZoneRecommendedViewSizeDXR for per-zone sizes — XrEventDataDisplayZoneMetricsChangedDXR is deprecated and never emitted |
 | `XR_DXR_lift` | [`XR_DXR_lift.h`](include/openxr/XR_DXR_lift.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_lift.md) | Asynchronous access to a vendor's 2D-to-3D conversion module (depth, stereo, N-view, or photo-to-Gaussian-splats): submit 2D frames, acquire the latest converted result, or flag a weave rect as 2D so the service lifts it before weaving |
