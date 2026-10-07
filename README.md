@@ -64,7 +64,7 @@ Getting the composed multi-view frame back out of the runtime — for screenshot
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
 | `XR_DXR_atlas_capture` | [`XR_DXR_atlas_capture.h`](include/openxr/XR_DXR_atlas_capture.h) | 3 | — | Vendor-neutral PNG snapshot of the multi-view atlas at a caller-selected compositor stage, for any app class |
-| `XR_DXR_stereo_camera` | [`XR_DXR_stereo_camera.h`](include/openxr/XR_DXR_stereo_camera.h) | 2 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_stereo_camera.md) | The display's own stereo camera (usually the eye tracker's) as a runtime-owned, privacy-gated source: the vendor plug-in supplies frames without taking the device from the tracker, and the service fans newest-frame side-by-side pairs out to clients over shared memory |
+| `XR_DXR_stereo_camera` | [`XR_DXR_stereo_camera.h`](include/openxr/XR_DXR_stereo_camera.h) | 3 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_stereo_camera.md) | The display's own stereo camera (usually the eye tracker's) as a runtime-owned, privacy-gated source: the vendor plug-in supplies frames without taking the device from the tracker, and the service fans newest-frame side-by-side pairs out to clients over shared memory |
 
 ## Usage
 
