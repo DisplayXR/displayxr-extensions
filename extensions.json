@@ -65,9 +65,9 @@
   {
     "name": "XR_DXR_lift",
     "title": "2D-to-3D Conversion",
-    "summary": "Asynchronous access to a vendor's 2D-to-3D conversion module (depth, stereo, N-view, or photo-to-Gaussian-splats): submit 2D frames, acquire the latest converted result, or flag a weave rect as 2D so the service lifts it before weaving",
+    "summary": "Asynchronous access to a vendor's 2D-to-3D conversion module (depth, stereo, N-view, or photo-to-Gaussian-splats): submit 2D frames, acquire the latest converted result, or flag a weave rect as 2D so the service lifts it before weaving; the runtime owns the viewpoint policy (window-relative look-around, rig factors, axis mode, ease-back)",
     "group": "rendering",
-    "specVersion": 1,
+    "specVersion": 2,
     "header": "include/openxr/XR_DXR_lift.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_lift.md"
   },
