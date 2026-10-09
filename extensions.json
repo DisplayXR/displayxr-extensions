@@ -20,9 +20,9 @@
   {
     "name": "XR_DXR_cocoa_window_binding",
     "title": "Cocoa Window Binding",
-    "summary": "App-provided NSView, IOSurface sharing",
+    "summary": "App-provided NSView, IOSurface sharing, runtime-owned phase-snapped window drag/resize (opt-out)",
     "group": "windowing",
-    "specVersion": 6,
+    "specVersion": 8,
     "header": "include/openxr/XR_DXR_cocoa_window_binding.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_cocoa_window_binding.md"
   },
