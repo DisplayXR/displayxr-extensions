@@ -101,9 +101,9 @@
   {
     "name": "XR_DXR_spatial_workspace",
     "title": "Spatial Workspace",
-    "summary": "Multi-app composition: window pose, hit-test, capture, overlay, modal input grab",
+    "summary": "Multi-app composition across every 3D screen: screen enumeration, per-screen window placement, capture, overlay, modal input grab",
     "group": "workspace",
-    "specVersion": 24,
+    "specVersion": 25,
     "header": "include/openxr/XR_DXR_spatial_workspace.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_spatial_workspace.md"
   },
