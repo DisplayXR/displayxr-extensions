@@ -47,7 +47,7 @@ The contract that lets a workspace controller — the DisplayXR Shell, or any th
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
-| `XR_DXR_spatial_workspace` | [`XR_DXR_spatial_workspace.h`](include/openxr/XR_DXR_spatial_workspace.h) | 25 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_spatial_workspace.md) | Multi-app composition across every 3D screen: screen enumeration, per-screen window placement, capture, overlay, modal input grab |
+| `XR_DXR_spatial_workspace` | [`XR_DXR_spatial_workspace.h`](include/openxr/XR_DXR_spatial_workspace.h) | 26 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_spatial_workspace.md) | Multi-app composition across every 3D screen: screen enumeration, per-screen window placement and overlays, capture, modal input grab |
 | `XR_DXR_workspace_file_dialog` | [`XR_DXR_workspace_file_dialog.h`](include/openxr/XR_DXR_workspace_file_dialog.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_workspace_file_dialog.md) | Async spatial-native file picker spawned by the active workspace controller, with fallback to the platform dialog |
 
 ## Agent control
