@@ -29,9 +29,9 @@
   {
     "name": "XR_DXR_cursor_depth",
     "title": "Depth-Aware Cursor",
-    "summary": "Opt-in: the app reports the nearest content under the cursor at xrLocateViews and gets back a pose and size for a cursor sprite just in front of it, so the pointer never sits behind 3D content",
+    "summary": "Opt-in: the app reports the nearest content under the cursor at xrLocateViews; the runtime places a cursor sprite just in front of it (and, since v5, draws it, with the app's own sprite or the OS cursor's look), so the pointer never sits behind 3D content",
     "group": "rendering",
-    "specVersion": 4,
+    "specVersion": 5,
     "header": "include/openxr/XR_DXR_cursor_depth.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_cursor_depth.md"
   },
