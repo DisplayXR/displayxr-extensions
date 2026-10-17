@@ -2,9 +2,9 @@
   {
     "name": "XR_DXR_android_surface_binding",
     "title": "Android Surface Binding",
-    "summary": "App-provided Android Surface / ANativeWindow, republished across background and resume, with the per-frame window rect",
+    "summary": "App-provided Android Surface / ANativeWindow, republished across background and resume, with the per-frame window rect and the surface's touch events for the runtime's touch input provider",
     "group": "windowing",
-    "specVersion": 2,
+    "specVersion": 3,
     "header": "include/openxr/XR_DXR_android_surface_binding.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_android_surface_binding.md"
   },
