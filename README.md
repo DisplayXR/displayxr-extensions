@@ -2,7 +2,7 @@
 
 OpenXR extension headers for 3D-display runtimes. **Auto-published** from [`displayxr-runtime`](https://github.com/DisplayXR/displayxr-runtime).
 
-19 extensions, in 6 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
+20 extensions, in 6 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
 
 `Spec` links the formal specification where one is written; a dash means the header is the specification for now.
 
@@ -56,6 +56,7 @@ How applications plug into the AI-agent surface, exposing their own actions thro
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
+| `XR_DXR_desktop_control` | [`XR_DXR_desktop_control.h`](include/openxr/XR_DXR_desktop_control.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_desktop_control.md) | An app's agent observes and operates the desktop (windows, UI text, typing, clicks) through the OS's own consent, granted to the app, never to DisplayXR |
 | `XR_DXR_mcp_tools` | [`XR_DXR_mcp_tools.h`](include/openxr/XR_DXR_mcp_tools.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_mcp_tools.md) | An app registers its own MCP tools with the runtime's agent surface; calls arrive on the OpenXR event queue |
 
 ## Capture
