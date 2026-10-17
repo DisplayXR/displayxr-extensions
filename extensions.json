@@ -137,11 +137,11 @@
   {
     "name": "XR_DXR_view_rig",
     "title": "View Rig",
-    "summary": "App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math",
+    "summary": "App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math — and, chained on the hand-joint locate, returns the joints in that same rig frame",
     "group": "rendering",
-    "specVersion": 3,
+    "specVersion": 4,
     "header": "include/openxr/XR_DXR_view_rig.h",
-    "specUrl": null
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_view_rig.md"
   },
   {
     "name": "XR_DXR_wayland_surface_binding",
