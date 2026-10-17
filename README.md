@@ -2,7 +2,7 @@
 
 OpenXR extension headers for 3D-display runtimes. **Auto-published** from [`displayxr-runtime`](https://github.com/DisplayXR/displayxr-runtime).
 
-20 extensions, in 6 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
+21 extensions, in 7 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
 
 `Spec` links the formal specification where one is written; a dash means the header is the specification for now.
 
@@ -40,6 +40,14 @@ How an app hands its native window to the runtime so the compositor can output i
 | `XR_DXR_wayland_surface_binding` | [`XR_DXR_wayland_surface_binding.h`](include/openxr/XR_DXR_wayland_surface_binding.h) | 2 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_wayland_surface_binding.md) | App-provided wl_display and wl_surface (desktop Linux), plus the app-declared surface size that makes windowed Wayland work |
 | `XR_DXR_win32_window_binding` | [`XR_DXR_win32_window_binding.h`](include/openxr/XR_DXR_win32_window_binding.h) | 8 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_win32_window_binding.md) | App-provided HWND, shared texture, canvas sub-rect |
 | `XR_DXR_xlib_window_binding` | [`XR_DXR_xlib_window_binding.h`](include/openxr/XR_DXR_xlib_window_binding.h) | 2 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_xlib_window_binding.md) | App-provided X11 Display* and Window (desktop Linux) |
+
+## Input providers
+
+Which installed input provider drives an app's controllers, hands and gamepad, and how an app shows its user the choice and asks for one — while the user's own pins and defaults always win.
+
+| Extension | Header | Ver | Spec | Description |
+|---|---|:--:|:--:|---|
+| `XR_DXR_input_providers` | [`XR_DXR_input_providers.h`](include/openxr/XR_DXR_input_providers.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_input_providers.md) | An app lists the resident input providers (the provider's own name, families it supplies, presence, which one holds this app's controllers / hands / gamepad) and requests one per family, optionally as the user's per-app pin |
 
 ## Workspace controller surface
 
