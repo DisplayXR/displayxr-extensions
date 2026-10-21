@@ -49,7 +49,7 @@
     "title": "Desktop Control",
     "summary": "An app's agent observes and operates the desktop (windows, UI text, typing, clicks) and, as a separate consent scope, captures screen stills, through the OS's own consent, granted to the app, never to DisplayXR",
     "group": "agent",
-    "specVersion": 2,
+    "specVersion": 3,
     "header": "include/openxr/XR_DXR_desktop_control.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_desktop_control.md"
   },

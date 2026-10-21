@@ -52,6 +52,17 @@
  * CONTROL = everything in version 1): stills on request, never a stream, never
  * written to disk by the runtime, behind the same kill switch, lock check and audit log.
  *
+ * Spec version 3 (ADR-056 Amendment 3) adds held input — KEY_DOWN / KEY_UP,
+ * BUTTON_DOWN / BUTTON_UP and modifiers around a click, drag or scroll — with every
+ * key and button the agent holds released automatically, input for the desktop
+ * shell itself (XR_DESKTOP_TARGET_SHELL_DXR: the top bar / taskbar, the dock, the
+ * desktop, the overview, keys with no app window focused), and clipboard text
+ * (SET_CLIPBOARD_TEXT / GET_CLIPBOARD_TEXT + xrGetDesktopClipboardTextDXR) (spec §11).
+ * Apps check the
+ * extension's specVersion before using any of it: a version 2 runtime refuses the new
+ * action types, but ignores a chained XrDesktopActionModifiersDXR (OpenXR's rule for
+ * unknown structures) and would click without the modifiers.
+ *
  * Spec: displayxr-runtime docs/specs/extensions/XR_DXR_desktop_control.md
  * Decision: docs/adr/ADR-056-desktop-control-runs-in-the-app.md
  */
@@ -65,7 +76,7 @@ extern "C" {
 #endif
 
 #define XR_DXR_desktop_control 1
-#define XR_DXR_desktop_control_SPEC_VERSION 2
+#define XR_DXR_desktop_control_SPEC_VERSION 3
 #define XR_DXR_DESKTOP_CONTROL_EXTENSION_NAME "XR_DXR_desktop_control"
 
 #define XR_TYPE_DESKTOP_WINDOW_DXR                          ((XrStructureType)1004999400)
@@ -81,6 +92,8 @@ extern "C" {
 #define XR_TYPE_EVENT_DATA_DESKTOP_CAPTURE_STATE_CHANGED_DXR ((XrStructureType)1004999409)
 // Spec version 2, continued in a fresh decade (400–409 is full).
 #define XR_TYPE_DESKTOP_CONTROL_PARENT_WINDOW_DXR            ((XrStructureType)1004999420)
+// Spec version 3 (spec §11, ADR-056 Amendment 3).
+#define XR_TYPE_DESKTOP_ACTION_MODIFIERS_DXR                 ((XrStructureType)1004999421)
 
 //! The operation is refused by the safety layer (lock screen, kill switch, the
 //! user is typing and the wait timed out, target verification failed). The
@@ -96,6 +109,24 @@ extern "C" {
 #define XR_MAX_DESKTOP_MESSAGE_SIZE_DXR 256
 //! Spec version 2: XrDesktopControlParentWindowDXR::parentWindow, terminator included.
 #define XR_MAX_DESKTOP_PARENT_WINDOW_SIZE_DXR 256
+
+/*!
+ * Spec version 3: the reserved XrDesktopActionDXR::targetWindowId of input meant for the
+ * desktop SHELL, not for an app window — the top bar / taskbar, the dock, the desktop
+ * background, the GNOME overview, keys with no app window focused (Super, shell
+ * shortcuts). Input actions only (pointer, keys, text). It is verified the other way
+ * round: the pick at the point must NOT be an app window (shell, desktop, or outside
+ * every monitor — a pointer that cannot get there fails to move), and for keys no app
+ * window may hold the keyboard (nothing focused, or the shell holds it: the overview).
+ * Without it, input where no app window is stays refused, as in version 2 — a version 2
+ * runtime finds no such window and completes the action with
+ * XR_ERROR_DESKTOP_WINDOW_LOST_DXR.
+ */
+#define XR_DESKTOP_TARGET_SHELL_DXR ((uint64_t)0xFFFFFFFFFFFFFFFFull)
+
+//! Spec version 3: the largest clipboard text SET_CLIPBOARD_TEXT writes and
+//! GET_CLIPBOARD_TEXT reads, in bytes of UTF-8, the terminator excluded (1 MiB).
+#define XR_MAX_DESKTOP_CLIPBOARD_TEXT_SIZE_DXR 1048576
 
 /*!
  * Where the app stands with desktop control. Only GRANTED allows operations.
@@ -127,6 +158,9 @@ static const XrDesktopControlCapabilityFlagsDXR XR_DESKTOP_CONTROL_CAPABILITY_IN
 //! Spec version 2: the backend can capture screen pixels (and this system has the
 //! libraries for it). Without it the CAPTURE scope is UNSUPPORTED.
 static const XrDesktopControlCapabilityFlagsDXR XR_DESKTOP_CONTROL_CAPABILITY_CAPTURE_BIT_DXR = 0x00000040;
+//! Spec version 3: the backend can read and write the clipboard's text
+//! (SET_CLIPBOARD_TEXT / GET_CLIPBOARD_TEXT; GNOME: the portal's clipboard).
+static const XrDesktopControlCapabilityFlagsDXR XR_DESKTOP_CONTROL_CAPABILITY_CLIPBOARD_BIT_DXR = 0x00000080;
 
 /*!
  * Spec version 2: the consent scopes. Each has its own state (XrDesktopControlStateDXR
@@ -202,6 +236,33 @@ typedef enum XrDesktopActionTypeDXR {
     XR_DESKTOP_ACTION_TYPE_CLICK_DXR         = 13, //!< `button` × `clickCount` at `point`
     XR_DESKTOP_ACTION_TYPE_DRAG_DXR          = 14, //!< `button` held from `point` to `point2`
     XR_DESKTOP_ACTION_TYPE_SCROLL_DXR        = 15, //!< `scrollX`/`scrollY` notches at `point`
+    // --- spec version 3: held input (spec §11.2). What the session holds is released
+    // --- automatically: on the app's KEY_UP / BUTTON_UP, at the end of the action burst
+    // --- (2 s without an action), after 10 s, on the kill switch, a lock, the user's own
+    // --- input, focus moving to another app's window, and when the session ends.
+    //! Press and HOLD one key: `keys` names exactly one key or one modifier ("shift",
+    //! "alt", "tab", "a"). Verified like a chord (the target has keyboard focus).
+    XR_DESKTOP_ACTION_TYPE_KEY_DOWN_DXR      = 16,
+    //! Release a key this session holds (`keys` as for KEY_DOWN). Never refused for
+    //! focus and never waits for the user; REFUSED when the key is not held.
+    XR_DESKTOP_ACTION_TYPE_KEY_UP_DXR        = 17,
+    //! Press and HOLD `button` at `point` (targeting as CLICK). A POINTER_MOVE while it
+    //! is held drags it.
+    XR_DESKTOP_ACTION_TYPE_BUTTON_DOWN_DXR   = 18,
+    //! Release a held `button` at `point`: the pointer drags there first when the point
+    //! verifies like a CLICK's; otherwise the button is released where the pointer is
+    //! and the action is REFUSED. Never waits for the user.
+    XR_DESKTOP_ACTION_TYPE_BUTTON_UP_DXR     = 19,
+    // --- spec version 3: clipboard text (spec §11.6). targetWindowId must be 0. They run in
+    // --- submission order with the other actions (so never in the middle of a paste).
+    //! `text` (UTF-8, at most XR_MAX_DESKTOP_CLIPBOARD_TEXT_SIZE_DXR bytes) becomes the
+    //! clipboard's text, as a copy would. Waits for the user to be idle, like input.
+    XR_DESKTOP_ACTION_TYPE_SET_CLIPBOARD_TEXT_DXR = 20,
+    //! Read the clipboard's text (whoever copied it); fetch it with
+    //! xrGetDesktopClipboardTextDXR(actionId) after the completion event. No text on the
+    //! clipboard: XR_SUCCESS with an empty text. Larger than the maximum:
+    //! XR_ERROR_LIMIT_REACHED. Does not wait for the user.
+    XR_DESKTOP_ACTION_TYPE_GET_CLIPBOARD_TEXT_DXR = 21,
     XR_DESKTOP_ACTION_TYPE_MAX_ENUM_DXR      = 0x7FFFFFFF
 } XrDesktopActionTypeDXR;
 
@@ -213,8 +274,20 @@ typedef enum XrDesktopPointerButtonDXR {
 } XrDesktopPointerButtonDXR;
 
 /*!
+ * Spec version 3: the modifier keys held around a CLICK, DRAG or SCROLL.
+ */
+typedef XrFlags64 XrDesktopKeyModifierFlagsDXR;
+static const XrDesktopKeyModifierFlagsDXR XR_DESKTOP_KEY_MODIFIER_CTRL_BIT_DXR  = 0x00000001;
+static const XrDesktopKeyModifierFlagsDXR XR_DESKTOP_KEY_MODIFIER_SHIFT_BIT_DXR = 0x00000002;
+//! Option on macOS.
+static const XrDesktopKeyModifierFlagsDXR XR_DESKTOP_KEY_MODIFIER_ALT_BIT_DXR   = 0x00000004;
+//! The Windows key / Command / Super.
+static const XrDesktopKeyModifierFlagsDXR XR_DESKTOP_KEY_MODIFIER_SUPER_BIT_DXR = 0x00000008;
+
+/*!
  * One action. Fields not used by `actionType` are ignored. Strings are copied at
- * submit time.
+ * submit time. Spec version 3: `next` may carry an XrDesktopActionModifiersDXR (other
+ * structures in the chain are ignored).
  */
 typedef struct XrDesktopActionDXR {
     XrStructureType            type;   //!< XR_TYPE_DESKTOP_ACTION_DXR
@@ -222,7 +295,8 @@ typedef struct XrDesktopActionDXR {
     XrDesktopActionTypeDXR     actionType;
     //! The window this action is for. Window actions act on it; input actions are
     //! delivered only if it is the window under `point` (pointer actions) or has
-    //! keyboard focus (text / keys) at delivery time.
+    //! keyboard focus (text / keys) at delivery time. Spec version 3: or
+    //! XR_DESKTOP_TARGET_SHELL_DXR (input for the desktop shell, see there).
     uint64_t                   targetWindowId;
     XrRect2Di                  rect;       //!< MOVE_RESIZE
     XrOffset2Di                point;      //!< pointer actions
@@ -231,9 +305,24 @@ typedef struct XrDesktopActionDXR {
     uint32_t                   clickCount; //!< CLICK (0 is treated as 1)
     int32_t                    scrollX;    //!< SCROLL, notches, +right
     int32_t                    scrollY;    //!< SCROLL, notches, +down
-    const char*                text;       //!< TYPE_TEXT
-    const char*                keys;       //!< KEY_CHORD
+    const char*                text;       //!< TYPE_TEXT; spec version 3: SET_CLIPBOARD_TEXT
+    const char*                keys;       //!< KEY_CHORD; spec version 3: KEY_DOWN / KEY_UP (one key or modifier)
 } XrDesktopActionDXR;
+
+/*!
+ * Spec version 3. Chained on XrDesktopActionDXR::next of a CLICK, DRAG or SCROLL: the
+ * modifiers pressed after the pointer reached `point` (and verified), held for the
+ * click / drag / scroll, and always released after it — whatever happened (ctrl+click,
+ * shift+click, alt+drag, ctrl+scroll). A modifier the session already holds (KEY_DOWN)
+ * is neither pressed again nor released. Chained on any other action type, or with an
+ * unknown bit: XR_ERROR_VALIDATION_FAILURE. A version 2 runtime ignores it (check the
+ * spec version first).
+ */
+typedef struct XrDesktopActionModifiersDXR {
+    XrStructureType               type;      //!< XR_TYPE_DESKTOP_ACTION_MODIFIERS_DXR
+    const void* XR_MAY_ALIAS      next;
+    XrDesktopKeyModifierFlagsDXR  modifiers; //!< 0 = none
+} XrDesktopActionModifiersDXR;
 
 /*!
  * Optional argument of xrRequestDesktopControlDXR (pass NULL for none). `reason` is
@@ -430,6 +519,21 @@ typedef XrResult (XRAPI_PTR *PFN_xrGetDesktopCaptureImageDXR)(
     uint32_t*  countOutput,
     uint8_t*   rgba);
 
+//! Spec version 3: the text a successful GET_CLIPBOARD_TEXT action read (two-call idiom,
+//! in bytes, the terminator included: countOutput = length + 1; "" when the clipboard
+//! held no text). Only the most recent successful GET is kept, until a call copies it
+//! out, the next GET completes, the session ends, 10 s pass or the state leaves
+//! GRANTED (kill switch, lock, deny, revocation: the text is wiped then, and not handed
+//! out when the grant is back); a size query or a too-small buffer
+//! (XR_ERROR_SIZE_INSUFFICIENT) keeps it. Any other id: XR_ERROR_VALIDATION_FAILURE.
+//! Clipboard text never reaches a log or the audit.
+typedef XrResult (XRAPI_PTR *PFN_xrGetDesktopClipboardTextDXR)(
+    XrSession  session,
+    uint64_t   actionId,
+    uint32_t   capacityInput,
+    uint32_t*  countOutput,
+    char*      buffer);
+
 #ifndef XR_NO_PROTOTYPES
 XRAPI_ATTR XrResult XRAPI_CALL xrGetDesktopControlStateDXR(XrSession session, XrDesktopControlStateDXR* state, XrDesktopControlCapabilityFlagsDXR* capabilities);
 XRAPI_ATTR XrResult XRAPI_CALL xrRequestDesktopControlDXR(XrSession session, const XrDesktopControlRequestInfoDXR* info);
@@ -441,6 +545,7 @@ XRAPI_ATTR XrResult XRAPI_CALL xrSubmitDesktopActionDXR(XrSession session, const
 XRAPI_ATTR XrResult XRAPI_CALL xrGetDesktopCaptureStateDXR(XrSession session, XrDesktopControlStateDXR* state);
 XRAPI_ATTR XrResult XRAPI_CALL xrCaptureDesktopDXR(XrSession session, const XrDesktopCaptureInfoDXR* info, uint64_t* captureId);
 XRAPI_ATTR XrResult XRAPI_CALL xrGetDesktopCaptureImageDXR(XrSession session, uint64_t captureId, uint32_t capacityInput, uint32_t* countOutput, uint8_t* rgba);
+XRAPI_ATTR XrResult XRAPI_CALL xrGetDesktopClipboardTextDXR(XrSession session, uint64_t actionId, uint32_t capacityInput, uint32_t* countOutput, char* buffer);
 #endif
 
 #ifdef __cplusplus
