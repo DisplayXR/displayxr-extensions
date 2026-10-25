@@ -96,7 +96,7 @@
     "group": "rendering",
     "specVersion": 5,
     "header": "include/openxr/XR_DXR_local_3d_zone.h",
-    "specUrl": null
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_local_3d_zone.md"
   },
   {
     "name": "XR_DXR_macos_gl_binding",
