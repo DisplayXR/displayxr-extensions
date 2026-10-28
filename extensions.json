@@ -135,6 +135,15 @@
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_stereo_camera.md"
   },
   {
+    "name": "XR_DXR_swapchain_color_encoding",
+    "title": "Swapchain Color Encoding",
+    "summary": "Declares that a UNORM swapchain holds display-encoded (sRGB) values, so the runtime reads it like an _SRGB one: lets a 10-bit back buffer be submitted without converting it",
+    "group": "rendering",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_swapchain_color_encoding.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_swapchain_color_encoding.md"
+  },
+  {
     "name": "XR_DXR_view_rig",
     "title": "View Rig",
     "summary": "App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math — and, chained on the hand-joint locate, returns the joints in that same rig frame",
