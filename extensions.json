@@ -9,6 +9,15 @@
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_android_surface_binding.md"
   },
   {
+    "name": "XR_DXR_app_share",
+    "title": "3D App Share",
+    "summary": "3D screen share: a running DisplayXR app's pre-weave left/right views offered as one more XR_DXR_stereo_camera source, display-referred side-by-side frames with per-frame content metadata, behind a per-start runtime share prompt (ADR-061; not implemented yet)",
+    "group": "capture",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_app_share.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_app_share.md"
+  },
+  {
     "name": "XR_DXR_atlas_capture",
     "title": "Atlas Capture",
     "summary": "Vendor-neutral PNG snapshot of the multi-view atlas at a caller-selected compositor stage, for any app class",

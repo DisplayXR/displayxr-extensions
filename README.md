@@ -2,7 +2,7 @@
 
 OpenXR extension headers for 3D-display runtimes. **Auto-published** from [`displayxr-runtime`](https://github.com/DisplayXR/displayxr-runtime).
 
-22 extensions, in 7 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
+23 extensions, in 7 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
 
 `Spec` links the formal specification where one is written; a dash means the header is the specification for now.
 
@@ -74,6 +74,7 @@ Getting the composed multi-view frame back out of the runtime — for screenshot
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
+| `XR_DXR_app_share` | [`XR_DXR_app_share.h`](include/openxr/XR_DXR_app_share.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_app_share.md) | 3D screen share: a running DisplayXR app's pre-weave left/right views offered as one more XR_DXR_stereo_camera source, display-referred side-by-side frames with per-frame content metadata, behind a per-start runtime share prompt (ADR-061; not implemented yet) |
 | `XR_DXR_atlas_capture` | [`XR_DXR_atlas_capture.h`](include/openxr/XR_DXR_atlas_capture.h) | 3 | — | Vendor-neutral PNG snapshot of the multi-view atlas at a caller-selected compositor stage, for any app class |
 | `XR_DXR_stereo_camera` | [`XR_DXR_stereo_camera.h`](include/openxr/XR_DXR_stereo_camera.h) | 7 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_stereo_camera.md) | A runtime-owned, privacy-gated stereo camera source: the display's own camera (usually the eye tracker's, supplied by the vendor plug-in without taking it from the tracker) or an opted-in plain UVC side-by-side webcam, fanned out by the service to clients as rectified newest-frame side-by-side pairs over shared memory |
 
