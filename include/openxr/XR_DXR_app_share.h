@@ -106,7 +106,7 @@ typedef struct XrAppShareSourcePropertiesDXR {
     //! See XrAppShareFrameInfoDXR; the value at enumeration time.
     float zeroDisparityShiftFrac;
     //! XR_TRUE when the source atlas held LINEAR values (ADR-044). Diagnostic:
-    //! delivered frames are always BT.709-encoded NV12.
+    //! delivered frames are always gamma-encoded NV12, BT.601 full range.
     XrBool32 encodingIsLinear;
 } XrAppShareSourcePropertiesDXR;
 
@@ -125,8 +125,9 @@ typedef struct XrAppShareFrameInfoDXR {
     //! Bumps whenever contentRect, mono or the app's view layout changed.
     uint32_t contentGeneration;
     /*!
-     * Horizontal disparity, as a fraction of contentRect's width (right-view x
-     * minus left-view x), of a point on the SENDER's display plane. A receiver
+     * Horizontal disparity, as a fraction of the delivered per-eye width
+     * (eyeExtent.width; right-view x minus left-view x), of a point on the
+     * SENDER's display plane. A receiver
      * that wants the sender's display plane at its own zero-disparity plane
      * shifts each eye by half of it in opposite directions. 0 = the frame is
      * already display-referred (always 0 in spec v1: the runtime's off-axis
