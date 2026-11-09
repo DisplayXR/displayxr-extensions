@@ -166,7 +166,7 @@
     "title": "View Rig",
     "summary": "App declares a display or camera rig descriptor and consumes render-ready XrView{pose, fov}; the runtime owns the projection math — and, chained on the hand-joint locate, returns the joints in that same rig frame",
     "group": "rendering",
-    "specVersion": 4,
+    "specVersion": 5,
     "header": "include/openxr/XR_DXR_view_rig.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_view_rig.md"
   },
