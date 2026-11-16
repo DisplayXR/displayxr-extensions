@@ -2,7 +2,7 @@
 
 OpenXR extension headers for 3D-display runtimes. **Auto-published** from [`displayxr-runtime`](https://github.com/DisplayXR/displayxr-runtime).
 
-24 extensions, in 7 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
+25 extensions, in 7 groups: what the runtime tells apps about the display, how an app drives the view math and 2D/3D compositing, how it hands the runtime its native window, the surface a swappable workspace controller uses, the app-agent bridge, and frame capture.
 
 `Spec` links the formal specification where one is written; a dash means the header is the specification for now.
 
@@ -12,7 +12,7 @@ What the runtime tells apps about the 3D display they are rendering on.
 
 | Extension | Header | Ver | Spec | Description |
 |---|---|:--:|:--:|---|
-| `XR_DXR_display_info` | [`XR_DXR_display_info.h`](include/openxr/XR_DXR_display_info.h) | 25 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md) | Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection |
+| `XR_DXR_display_info` | [`XR_DXR_display_info.h`](include/openxr/XR_DXR_display_info.h) | 26 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md) | Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection |
 
 ## Rendering, projection & compositing
 
@@ -41,6 +41,7 @@ How an app hands its native window to the runtime so the compositor can output i
 | `XR_DXR_macos_gl_binding` | [`XR_DXR_macos_gl_binding.h`](include/openxr/XR_DXR_macos_gl_binding.h) | 2 | — | macOS OpenGL graphics binding |
 | `XR_DXR_wayland_surface_binding` | [`XR_DXR_wayland_surface_binding.h`](include/openxr/XR_DXR_wayland_surface_binding.h) | 2 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_wayland_surface_binding.md) | App-provided wl_display and wl_surface (desktop Linux), plus the app-declared surface size that makes windowed Wayland work |
 | `XR_DXR_win32_window_binding` | [`XR_DXR_win32_window_binding.h`](include/openxr/XR_DXR_win32_window_binding.h) | 9 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_win32_window_binding.md) | App-provided HWND, shared texture, canvas sub-rect |
+| `XR_DXR_window_visibility` | [`XR_DXR_window_visibility.h`](include/openxr/XR_DXR_window_visibility.h) | 1 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_window_visibility.md) | Tells the app when nobody can see its window (minimized, cloaked, covered, hidden, the session locked or the display off) and why, with an opt-in that moves a hidden session to SYNCHRONIZED so it stops rendering, never while its window is the foreground window and never before it is first shown |
 | `XR_DXR_xlib_window_binding` | [`XR_DXR_xlib_window_binding.h`](include/openxr/XR_DXR_xlib_window_binding.h) | 2 | [spec](https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_xlib_window_binding.md) | App-provided X11 Display* and Window (desktop Linux) |
 
 ## Input providers

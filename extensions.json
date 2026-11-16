@@ -67,7 +67,7 @@
     "title": "Display Info",
     "summary": "Display dimensions, eye-tracking modes, and the data needed for asymmetric (Kooima) projection",
     "group": "display",
-    "specVersion": 25,
+    "specVersion": 26,
     "header": "include/openxr/XR_DXR_display_info.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_display_info.md"
   },
@@ -196,6 +196,15 @@
     "specVersion": 9,
     "header": "include/openxr/XR_DXR_win32_window_binding.h",
     "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_win32_window_binding.md"
+  },
+  {
+    "name": "XR_DXR_window_visibility",
+    "title": "Window Visibility",
+    "summary": "Tells the app when nobody can see its window (minimized, cloaked, covered, hidden, the session locked or the display off) and why, with an opt-in that moves a hidden session to SYNCHRONIZED so it stops rendering, never while its window is the foreground window and never before it is first shown",
+    "group": "windowing",
+    "specVersion": 1,
+    "header": "include/openxr/XR_DXR_window_visibility.h",
+    "specUrl": "https://github.com/DisplayXR/displayxr-runtime/blob/main/docs/specs/extensions/XR_DXR_window_visibility.md"
   },
   {
     "name": "XR_DXR_workspace_file_dialog",
